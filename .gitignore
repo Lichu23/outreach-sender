@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Secrets: your email login lives here
+.env
+.env.*
+!.env.example
+
+# Your sent history, do-not-contact list and recipients' emails
+data/
+
+# Lead lists
+*.csv
+leads*.md
+
+# Logs and test output
+*.log
+coverage/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

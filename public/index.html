@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Outreach Sender</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <h1>Outreach Sender</h1>
+    <p id="mode" class="badge" role="status"></p>
+  </header>
+
+  <nav class="tabs" aria-label="Views">
+    <a id="nav-send" href="/">New send</a>
+    <a id="nav-sent" href="/sent">Sent</a>
+  </nav>
+
+  <main id="main">
+    <div id="error" class="alert" role="alert" hidden></div>
+
+    <div id="send-view" class="stack">
+    <section id="compose" class="columns" aria-label="New send">
+      <div class="card">
+        <h2>1. Recipients</h2>
+        <label for="raw">Paste your emails</label>
+        <textarea id="raw" name="raw" rows="7" spellcheck="false" autocomplete="off" autocapitalize="off"
+          placeholder="ana@cafe.com, info@panaderia.com&#10;Juan &lt;juan@barberia.com&gt;…"></textarea>
+        <p class="hint">Any format works: commas, spaces, new lines, or a pasted table.</p>
+
+        <div class="list-head">
+          <h3 id="ready-title">Ready to send</h3>
+          <button id="clear-list" type="button" class="link" hidden>Remove all</button>
+        </div>
+        <ul id="ready" class="emails" aria-labelledby="ready-title"></ul>
+        <p id="ready-empty" class="empty">Emails you paste will appear here, one per line.</p>
+        <div id="problems"></div>
+      </div>
+
+      <div class="card">
+        <h2>2. Message</h2>
+        <label for="category">Category</label>
+        <input id="category" name="category" type="text" list="category-options" maxlength="40" autocomplete="off" placeholder="Cafés…">
+        <datalist id="category-options"></datalist>
+        <label for="subject">Subject</label>
+        <input id="subject" name="subject" type="text" maxlength="150" autocomplete="off">
+        <label for="body">Message</label>
+        <textarea id="body" name="body" rows="9" maxlength="20000"></textarea>
+
+        <h3>What they'll receive at the end</h3>
+        <pre id="footer" class="footer"></pre>
+
+        <div class="actions">
+          <button id="test" type="button" class="secondary">Send test to myself</button>
+          <button id="start" type="button" class="primary" disabled>Start sending</button>
+        </div>
+        <div id="confirm" class="confirm" hidden>
+          <p id="confirm-text"></p>
+          <div class="actions">
+            <button id="confirm-no" type="button" class="secondary">Go back</button>
+            <button id="confirm-yes" type="button" class="primary">Yes, start</button>
+          </div>
+        </div>
+        <p id="estimate" class="hint"></p>
+      </div>
+    </section>
+
+    <section id="progress" class="card" aria-label="Sending progress" hidden>
+      <div class="list-head">
+        <h2 id="progress-title"></h2>
+        <div class="actions">
+          <button id="pause" type="button" class="secondary">Pause</button>
+          <button id="resume" type="button" class="primary">Resume</button>
+          <button id="cancel" type="button" class="danger">Cancel the rest</button>
+          <button id="new" type="button" class="primary">New send</button>
+        </div>
+      </div>
+      <progress id="bar" max="1" value="0" aria-label="Emails processed"></progress>
+      <p id="counts" class="counts" role="status" aria-live="polite"></p>
+      <p id="notice" class="alert" hidden></p>
+      <ul id="results" class="emails results"></ul>
+    </section>
+
+    <section class="card" aria-label="Do-not-contact list">
+      <h2>Do-not-contact list</h2>
+      <p class="hint">When someone replies BAJA or asks you to stop, add them here. They'll be skipped from then on. <span id="suppressed-count"></span></p>
+      <label for="suppress-raw">Emails to block</label>
+      <div class="row">
+        <input id="suppress-raw" name="suppress" type="text" spellcheck="false" autocomplete="off">
+        <button id="suppress" type="button" class="secondary">Add to list</button>
+      </div>
+    </section>
+    </div>
+
+    <div id="sent-view" class="stack" hidden>
+      <section class="card" aria-labelledby="sent-title">
+        <div class="list-head">
+          <h2 id="sent-title">Sent emails</h2>
+          <label class="check"><input id="practice" name="practice" type="checkbox"> Show practice runs</label>
+        </div>
+        <nav id="categories" class="chips" aria-label="Categories"></nav>
+        <p id="sent-summary" class="counts" role="status" aria-live="polite"></p>
+        <label for="search">Search emails</label>
+        <input id="search" name="search" type="search" spellcheck="false" autocomplete="off" placeholder="info@cafe.com…">
+        <div class="table-wrap">
+          <table id="sent-table" hidden>
+            <thead>
+              <tr><th scope="col">Email</th><th scope="col">Category</th><th scope="col">Subject</th><th scope="col">Date</th><th scope="col">Status</th><th scope="col">Result</th></tr>
+            </thead>
+            <tbody id="sent-rows"></tbody>
+          </table>
+        </div>
+        <p id="sent-empty" class="empty" hidden></p>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

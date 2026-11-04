@@ -1,0 +1,17 @@
+{
+  "name": "outreach-sender",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local app to send a plain-text email to a pasted list, one at a time and within a daily limit.",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22.9"
+  },
+  "dependencies": {
+    "nodemailer": "^10.3.1"
+  }
+}
