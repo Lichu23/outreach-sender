@@ -12,6 +12,7 @@ data/
 # Lead lists
 *.csv
 leads*.md
+emails-by-category.md
 
 # Logs and test output
 *.log
@@ -23,3 +24,7 @@ Thumbs.db
 desktop.ini
 .vscode/
 .idea/
+
+# Markdown files, except the README
+*.md
+!README.md
